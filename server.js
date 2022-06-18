@@ -55,3 +55,12 @@ app.delete('/api/notes/:id', (req, res) => {
         res.send('Saved succesfully!!!');
     })
 });
+
+// GET request for HTML routes
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
