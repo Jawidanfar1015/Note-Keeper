@@ -64,3 +64,8 @@ app.get('/notes', (req, res) => {
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
+
+// listening to the port 
+app.listen(PORT, () => {
+    console.log(`App listening on Port: ${PORT}`);
+});
