@@ -6,6 +6,10 @@ const util = require('util');
 const { json } = require('express');
 const { notStrictEqual } = require('assert');
 
+// setting promises and variables for reading and writing file
+const readFileAsync = util.promisify(fs.readFile);
+const writeFileAsync = util.promisify(fs.writeFile);
+
 // setting up server
 const app = express();
 // assigning port for the server
