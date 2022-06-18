@@ -37,3 +37,21 @@ app.post('/api/notes', (req, res) => {
         res.json(note);
     }))
 });
+
+// DELETE request for api route
+app.delete('/api/notes/:id', (req, res) => {
+    const idToBeDeleted = parseInt(req.params.id);
+    readFileAsync('./db/db.json', 'utf-8').then( (data) => {
+        const notes = [].concat(JSON.parse(data));
+        const newNotesData = [];
+        for (let i=0; i<notes.length; i++){
+            if (idToBeDeleted !== notes[i].id){
+                newNotesData.push(notes[i]);
+            }
+        }
+        return newNotesData;
+    }).then( (notes) => {
+        writeFileAsync('./db/db.json', JSON.stringify(notes))
+        res.send('Saved succesfully!!!');
+    })
+});
