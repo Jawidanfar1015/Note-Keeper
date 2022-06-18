@@ -15,3 +15,11 @@ const PORT = process.env.PORT || 3334;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
+
+// GET request for api route
+app.get('/api/notes', (req, res) => {
+    readFileAsync('./db/db.json', 'utf-8').then((data) =>{
+        const notes = [].concat(JSON.parse(data));
+        res.json(notes);
+    })
+});
