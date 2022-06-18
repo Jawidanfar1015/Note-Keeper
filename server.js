@@ -23,3 +23,17 @@ app.get('/api/notes', (req, res) => {
         res.json(notes);
     })
 });
+
+// POST request for api route
+app.post('/api/notes', (req, res) => {
+    const note = req.body;
+    readFileAsync('./db/db.json', 'utf-8').then((data) => {
+        const notes = [].concat(JSON.parse(data));
+        note.id = notes.length + 1
+        notes.push(note);
+        return notes;    
+    }).then(( (notes) => {
+        writeFileAsync('./db/db.json', JSON.stringify(notes))
+        res.json(note);
+    }))
+});
