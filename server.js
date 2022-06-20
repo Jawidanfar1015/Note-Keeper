@@ -60,11 +60,6 @@ app.delete('/api/notes/:id', (req, res) => {
     })
 });
 
-// Get Request for fall back entries
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
 // GET request for HTML routes
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
@@ -73,6 +68,12 @@ app.get('/notes', (req, res) => {
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
+
+// Get Request for fall back entries
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 
 // listening to the port 
 app.listen(PORT, () => {
